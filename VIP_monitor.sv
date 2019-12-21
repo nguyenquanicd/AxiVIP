@@ -116,13 +116,13 @@ class VipAxiUvmMonitor extends uvm_monitor;
 		@(posedge vifAxiMaster.aclk) begin
 			if (vifAxiMaster.ARVALID && vifAxiMaster.ARREADY) begin
 				
-				coAxiUvmTransaction.ARVALID =  vifAxiMaster.ARVALID;
-				coAxiUvmTransaction.ARREADY =  vifAxiMaster.ARREADY;
-				coAxiUvmTransaction.ARADDR[ADDR_WIDTH -1:0] =  vifAxiMaster.ARVALID[ADDR_WIDTH -1:0];
-				coAxiUvmTransaction.ARID[ID_WIDTH-1:0] =  vifAxiMaster.ARID[ID_WIDTH-1:0];
-				coAxiUvmTransaction.ARBURST[1:0] =  vifAxiMaster.ARBURST[1:0];
-				coAxiUvmTransaction.ARLEN[BURST_LENGTH_WIDTH-1:0] =  vifAxiMaster.ARLEN[BURST_LENGTH_WIDTH-1:0];
-				coAxiUvmTransaction.ARSIZE[2:0] =  vifAxiMaster.ARSIZE[2:0];
+				coAxiUvmTransaction.ARVALID <=  vifAxiMaster.ARVALID;
+				coAxiUvmTransaction.ARREADY <=  vifAxiMaster.ARREADY;
+				coAxiUvmTransaction.ARADDR[ADDR_WIDTH -1:0] <=  vifAxiMaster.ARVALID[ADDR_WIDTH -1:0];
+				coAxiUvmTransaction.ARID[ID_WIDTH-1:0] <=  vifAxiMaster.ARID[ID_WIDTH-1:0];
+				coAxiUvmTransaction.ARBURST[1:0] <=  vifAxiMaster.ARBURST[1:0];
+				coAxiUvmTransaction.ARLEN[BURST_LENGTH_WIDTH-1:0] <=  vifAxiMaster.ARLEN[BURST_LENGTH_WIDTH-1:0];
+				coAxiUvmTransaction.ARSIZE[2:0] <=  vifAxiMaster.ARSIZE[2:0];
 				//Send the transaction to analysis port
 				ap_AxiAddrARChannel.write(coAxiUvmTransaction);
 				//Trigger event when detect ar_chanel
@@ -159,12 +159,12 @@ class VipAxiUvmMonitor extends uvm_monitor;
 		@(posedge vifAxiMaster.aclk) begin
 			if (vifAxiMaster.RVALID && vifAxiMaster.RREADY) begin
 				
-				coAxiUvmTransaction.RVALID =  vifAxiMaster.RVALID;
-				coAxiUvmTransaction.RREADY =  vifAxiMaster.RREADY;
-				coAxiUvmTransaction.RID[ID_WIDTH-1:0] =  vifAxiMaster.RID[ID_WIDTH-1:0];
-				coAxiUvmTransaction.RDATA[DATA_WIDTH-1:0] =  vifAxiMaster.RDATA[DATA_WIDTH-1:0];
-				coAxiUvmTransaction.RRESP[1:0] =  vifAxiMaster.RRESP[1:0];
-				coAxiUvmTransaction.RLAST =  vifAxiMaster.RLAST;
+				coAxiUvmTransaction.RVALID <=  vifAxiMaster.RVALID;
+				coAxiUvmTransaction.RREADY <=  vifAxiMaster.RREADY;
+				coAxiUvmTransaction.RID[ID_WIDTH-1:0] <=  vifAxiMaster.RID[ID_WIDTH-1:0];
+				coAxiUvmTransaction.RDATA[DATA_WIDTH-1:0] <=  vifAxiMaster.RDATA[DATA_WIDTH-1:0];
+				coAxiUvmTransaction.RRESP[1:0] <=  vifAxiMaster.RRESP[1:0];
+				coAxiUvmTransaction.RLAST <=  vifAxiMaster.RLAST;
 				if (axi4_ver) begin
 					coAxiUvmTransaction.RUSER[USER_WIDTH-1:0] <=  vifAxiMaster.RUSER[USER_WIDTH-1:0];
 				end
